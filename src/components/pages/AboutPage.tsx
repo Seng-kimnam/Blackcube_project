@@ -1,10 +1,5 @@
 import { Card, Section, SectionHeading } from "@/components/Section";
-import { SOUP_IMG, teamMembers } from "@/content";
-import yurin from "@/imports/team/photo_1_2026-08-09_21-11-20.jpg";
-import a from "@/imports/team/photo_2_2026-08-09_21-11-20.jpg";
-import b from "@/imports/team/photo_3_2026-08-09_21-11-20.jpg";
-import c from "@/imports/team/photo_4_2026-08-09_21-11-20.jpg";
-import d from "@/imports/team/photo_5_2026-08-09_21-11-20.jpg";
+import { SOUP_IMG } from "@/content";
 
 const teamInfo = [
   {
@@ -12,14 +7,16 @@ const teamInfo = [
     name: "Sokha Chhun",
     role: "Co-Founder & CEO",
     desc: "Sokha is a visionary entrepreneur with a passion for food innovation. He leads the team with a focus on product development and market strategy.",
-    image: yurin,
+    image:
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_21-11-20.jpg",
   },
   {
     id: 2,
     name: "Sreymom Chhun",
     role: "Co-Founder & COO",
     desc: "Sreymom is the operational backbone of BLACK CUBE. She ensures that our supply chain and production processes run smoothly.",
-    image: a,
+    image:
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-09_21-11-20.jpg",
   },
 
   {
@@ -27,21 +24,24 @@ const teamInfo = [
     name: "Chanrithy Chhun",
     role: "Marketing Director",
     desc: "Chanrithy is responsible for driving brand awareness and customer engagement. She leverages digital marketing strategies to connect with our audience.",
-    image: b,
+    image:
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2_2026-08-09_21-11-20.jpg",
   },
   {
     id: 4,
     name: "Vuthy Chhun",
     role: "Operations Manager",
     desc: "Vuthy oversees our day-to-day operations, ensuring efficiency and quality in every aspect of our business.",
-    image: c,
+    image:
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_4_2026-08-09_21-11-20.jpg",
   },
   {
     id: 5,
     name: "Sophea Chhun",
     role: "Product Development Lead",
     desc: "Sophea leads our product development team, focusing on creating innovative and high-quality food products that meet our customers' needs.",
-    image: d,
+    image:
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_5_2026-08-09_21-11-20.jpg",
   },
 ];
 export function AboutPage() {
