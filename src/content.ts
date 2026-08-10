@@ -42,8 +42,8 @@ export const t = {
     footerCopy: '© 2026 BLACK CUBE. All rights reserved.',
   },
   kh: {
-    nav: ['ទំព័រដើម', 'ផលិតផល', 'គ្រឿងផ្សំ', 'របៀបប្រើ', 'អំពីយើង', 'សិទ្ធិ​សម្រេច', 'ព័ត៌មាន', 'ទំនាក់ទំនង'],
-    navKeys: ['home', 'product', 'ingredients', 'how-to-use', 'about', 'achievements', 'news', 'contact'] as Page[],
+    nav: ['ទំព័រដើម', 'ផលិតផល',  'អំពីយើង', 'សិទ្ធិ​សម្រេច', 'ព័ត៌មាន', 'ទំនាក់ទំនង'],
+    navKeys: ['home', 'product',  'about', 'achievements', 'news', 'contact'] as Page[],
     giveFeedback: 'ផ្តល់មតិ',
     heroTag: 'នវានុវត្តន៍កម្ពុជា',
     heroTitle: 'ស៊ុប, សាមញ្ញ។',
