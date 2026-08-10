@@ -9,7 +9,7 @@ import {
   faLinkedin,
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
-import { faHouse } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faHouse } from "@fortawesome/free-solid-svg-icons";
 type AppShellRenderProps = {
   page: Page;
   setPage: (p: Page) => void;
@@ -93,6 +93,10 @@ export function AppShell({
     document.documentElement.lang = lang === "kh" ? "km" : "en";
   }, [page, lang]);
 
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [location.pathname]);
+
   const setPage = (nextPage: Page) => {
     navigate(pageToPath[nextPage]);
   };
@@ -102,7 +106,33 @@ export function AppShell({
       <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} l={l} />
       <main>{children({ page, setPage, lang, setLang, l })}</main>
       <Footer l={l} setPage={setPage} />
+      <ScrollToTopButton />
     </div>
+  );
+}
+
+function ScrollToTopButton() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 300);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <button
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      aria-label="Scroll to top"
+      className={`fixed bottom-0 right-0 z-50 mb-6 mr-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:bg-accent ${
+        visible
+          ? "translate-y-0 opacity-100"
+          : "pointer-events-none translate-y-4 opacity-0"
+      }`}
+    >
+      <FontAwesomeIcon icon={faArrowUp} />
+    </button>
   );
 }
 

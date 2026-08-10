@@ -2,6 +2,7 @@ import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import { copyFileSync, existsSync } from 'node:fs'
 
 
 
@@ -22,6 +23,7 @@ export default defineConfig(({ mode }) => {
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
+      spaFallback404(),
     ],
     resolve: {
       alias: {
@@ -65,6 +67,24 @@ type FigmaSiteConfiguration = {
   }
   accessibility?: {
     addBypassLinks?: boolean
+  }
+}
+
+/**
+ * GitHub Pages has no SPA fallback: unmatched paths return its default
+ * 404 page. Emitting 404.html (a copy of index.html) makes GitHub Pages
+ * serve the app shell for any missing path so client-side routes like
+ * /product keep working on direct visits and refreshes.
+ */
+function spaFallback404(): Plugin {
+  return {
+    name: 'spa-fallback-404',
+    apply: 'build',
+    closeBundle() {
+      const index = path.resolve(__dirname, 'dist/index.html')
+      const fallback = path.resolve(__dirname, 'dist/404.html')
+      if (existsSync(index)) copyFileSync(index, fallback)
+    },
   }
 }
 
