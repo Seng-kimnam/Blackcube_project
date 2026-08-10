@@ -15,9 +15,7 @@ import { faHouse } from "@fortawesome/free-solid-svg-icons";
 library.add(faFacebook, faInstagram, faLinkedin, faTiktok, faHouse);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </React.StrictMode>,
 );
