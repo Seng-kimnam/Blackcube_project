@@ -1,7 +1,4 @@
-const ALLOWED_ORIGINS = [
-  "https://blackcube.website",
-  "http://localhost:8443",
-];
+const ALLOWED_ORIGINS = ["https://blackcube.website"];
 
 function corsHeaders(origin) {
   if (origin && ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed))) {
@@ -37,7 +34,10 @@ export default {
       return json({ error: "Method not allowed" }, 405, origin);
     }
 
-    if (origin && !ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed))) {
+    if (
+      origin &&
+      !ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed))
+    ) {
       return json({ error: "Forbidden origin" }, 403, origin);
     }
 
@@ -72,7 +72,11 @@ export default {
 
     if (!res.ok) {
       const text = await res.text();
-      return json({ error: "Resend upstream error", detail: text }, res.status, origin);
+      return json(
+        { error: "Resend upstream error", detail: text },
+        res.status,
+        origin,
+      );
     }
     return json({ ok: true }, 200, origin);
   },
