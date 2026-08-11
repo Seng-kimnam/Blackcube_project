@@ -31,7 +31,7 @@ export function AchievementsPage({ l }: { l: TranslationSet }) {
           </div>
         ))}
       </div>
-      <Card className="mt-8 text-center">
+      {/* <Card className="mt-8 text-center">
         <div className="font-display text-4xl font-bold text-primary">$500</div>
         <div className="mt-2 text-base font-semibold text-foreground">
           Seed Fund Awarded
@@ -39,7 +39,7 @@ export function AchievementsPage({ l }: { l: TranslationSet }) {
         <div className="mt-2 text-sm text-muted-foreground">
           Dynamic Agripreneur Bootcamp Season 2
         </div>
-      </Card>
+      </Card> */}
     </Section>
   );
 }

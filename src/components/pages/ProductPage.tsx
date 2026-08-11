@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Card, Section, SectionHeading } from "@/components/Section";
 import { SOUP_IMG, ingredients, type TranslationSet } from "@/content";
 import { IngredientsPage } from "./IngredientsPage";
 import { HowToUsePage } from "./HowToUsePage";
+import { Popup } from "../Popup";
 
 export function ProductPage({
   l,
@@ -19,6 +21,7 @@ export function ProductPage({
       | "contact",
   ) => void;
 }) {
+  const [orderOpen, setOrderOpen] = useState(false);
   return (
     <>
       <Section className="pt-24">
@@ -151,7 +154,10 @@ export function ProductPage({
             </Card>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <button className="flex-1 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground">
+              <button
+                onClick={() => setOrderOpen(true)}
+                className="flex-1 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
+              >
                 Order Now
               </button>
               <button
@@ -165,7 +171,16 @@ export function ProductPage({
         </div>
       </Section>
       <IngredientsPage />
-      <HowToUsePage l={l}  />
+      <HowToUsePage l={l} />
+      <Popup
+        open={orderOpen}
+        onClose={() => setOrderOpen(false)}
+        variant="info"
+        title="Coming Soon"
+        message="The order feature is not yet available. Please contact us via Facebook or Instagram to place an order.Thank you for your interest!"
+        confirmLabel="OK"
+        cancelLabel={undefined}
+      />
     </>
   );
 }

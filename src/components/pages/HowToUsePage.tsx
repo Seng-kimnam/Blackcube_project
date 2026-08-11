@@ -1,5 +1,6 @@
 import { Card, Section, SectionHeading } from "@/components/Section";
 import { SOUP2, type TranslationSet } from "@/content";
+import { ChefHat, CookingPot, HandCoins, Salad } from "lucide-react";
 
 export function HowToUsePage({ l }: { l: TranslationSet }) {
   return (
@@ -8,11 +9,11 @@ export function HowToUsePage({ l }: { l: TranslationSet }) {
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {l.steps.map((step, i) => (
           <Card key={step.num} className="relative">
-            <div className="font-display text-5xl font-bold leading-none text-primary/15">
+            <div className="font-display text-5xl font-bold leading-none text-primary/50">
               {step.num}
             </div>
             <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-xl">
-              {["🫗", "🟫", "🥦", "🍲"][i]}
+              {[<CookingPot />, <HandCoins />, <Salad />, <ChefHat /> ][i]}
             </div>
             <h3 className="mt-6 text-lg font-semibold text-foreground">
               {step.title}

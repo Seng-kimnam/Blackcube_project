@@ -12,9 +12,9 @@ const teamInfo = [
   },
   {
     id: 2,
-    name: "Sreymom Chhun",
+    name: "Meanrith Yurin",
     role: "Co-Founder & COO",
-    desc: "Sreymom is the operational backbone of BLACK CUBE. She ensures that our supply chain and production processes run smoothly.",
+    desc: "Yurin is the operational backbone of BLACK CUBE. She ensures that our supply chain and production processes run smoothly.",
     image:
       "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-09_21-11-20.jpg",
   },
@@ -33,7 +33,7 @@ const teamInfo = [
     role: "Operations Manager",
     desc: "Vuthy oversees our day-to-day operations, ensuring efficiency and quality in every aspect of our business.",
     image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_4_2026-08-09_21-11-20.jpg",
+      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2026-08-11_13-30-20.jpg",
   },
   {
     id: 5,
@@ -76,9 +76,9 @@ export function AboutPage() {
           </p>
         </div>
         <img
-          src={SOUP_IMG}
+          src="https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2026-08-11_11-40-41.jpg"
           alt="About BLACK CUBE"
-          className="aspect-4/5 w-full rounded-3xl object-cover"
+          className=" w-full rounded-3xl object-cover"
         />
       </div>
 

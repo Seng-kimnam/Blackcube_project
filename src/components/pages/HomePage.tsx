@@ -1,6 +1,10 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { Section, SectionHeading, Card } from "@/components/Section";
+import { Carousel } from "@/components/Carousel";
 import { SOUP_IMG, SOUP_BOWL, SOUP2, type TranslationSet } from "@/content";
+import { Product3DPage } from "./Product3DPage";
+import { Popup } from "../Popup";
+import { ChefHat, CookingPot, HandCoins, Salad } from "lucide-react";
 
 export function HomePage({
   l,
@@ -11,7 +15,6 @@ export function HomePage({
     p:
       | "home"
       | "product"
-    
       | "about"
       | "achievements"
       | "news"
@@ -19,6 +22,7 @@ export function HomePage({
       | "contact",
   ) => void;
 }) {
+  const [orderOpen, setOrderOpen] = useState(false);
   const stats = useMemo(
     () => [
       ["4,000", "KHR / cube"],
@@ -27,9 +31,41 @@ export function HomePage({
     ],
     [],
   );
+  const slides = [
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/img1.jpg",
+      alt: "2nd winner of the Dynamic Agripreneur Bootcamp",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-11_11-36-17.jpg",
+      alt: "pitching BLACK CUBE at the Dynamic Agripreneur Bootcamp",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2_2026-08-11_11-36-17.jpg",
+      alt: "BLACK CUBE product gallery",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_6_2026-08-11_11-36-17.jpg",
+      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_5_2026-08-11_11-36-17.jpg",
+      alt: "BLACK CUBE product gallery",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_4_2026-08-09_15-07-25.jpg",
+      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
+    },
+    {
+      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_15-07-25.jpg",
+      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
+    },
+  ];
 
   return (
     <div>
+      <Carousel className="h-64 w-full sm:h-80 lg:h-140" slides={slides} />
+      <Product3DPage />
       <Section className="min-h-[calc(100vh-4rem)] pt-24">
         <div className="grid pl-40 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="">
@@ -56,6 +92,7 @@ export function HomePage({
                 {l.ourProductBtn}
               </button>
             </div>
+
             <div className="mt-12 flex flex-wrap gap-8 sm:gap-10">
               {[
                 ["4,000", "KHR / cube"],
@@ -91,7 +128,6 @@ export function HomePage({
                 </div>
               </div>
             </div>
-          
           </div>
         </div>
       </Section>
@@ -124,11 +160,11 @@ export function HomePage({
               key={step.num}
               className="relative border-b border-border p-8 md:border-b-0 md:border-r md:last:border-r-0"
             >
-              <div className=" text-white text-5xl font-bold leading-none ">
+              <div className=" text-primary/50 text-5xl font-bold leading-none ">
                 {step.num}
               </div>
               <div className="mt-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-primary/10 text-xl">
-                {/* {["🫗", "🟫", "🥦", "🍲"][i]} */}
+                {[<CookingPot />, <HandCoins />, <Salad />, <ChefHat />][i]}
               </div>
               <h3 className="mt-6 text-lg font-semibold text-foreground">
                 {step.title}
@@ -145,7 +181,7 @@ export function HomePage({
         <img
           src={SOUP_BOWL}
           alt="Soup bowl"
-          className="aspect-4/3 w-full rounded-3xl object-cover"
+          className=" w-full rounded-3xl object-cover"
         />
         <div>
           <SectionHeading title={l.benefitsTitle} />
@@ -230,7 +266,10 @@ export function HomePage({
           {l.ctaSub}
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
-          <button className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground">
+          <button
+            onClick={() => setOrderOpen(true)}
+            className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground"
+          >
             {l.ctaBtn}
           </button>
           <button
@@ -241,6 +280,15 @@ export function HomePage({
           </button>
         </div>
       </Section>
+      <Popup
+        open={orderOpen}
+        onClose={() => setOrderOpen(false)}
+        variant="info"
+        title="Coming Soon"
+        message="The order feature is not yet available. Please contact us via Facebook or Instagram to place an order.Thank you for your interest!"
+        confirmLabel="OK"
+        cancelLabel={undefined}
+      />
     </div>
   );
 }

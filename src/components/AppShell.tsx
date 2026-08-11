@@ -21,6 +21,7 @@ type AppShellRenderProps = {
 const pageToPath: Record<Page, string> = {
   home: "/",
   product: "/product",
+
   about: "/about",
   achievements: "/achievements",
   news: "/news",
@@ -51,6 +52,7 @@ const pathToPage = (pathname: string): Page => {
 const pageTitles: Record<Page, string> = {
   home: "Home",
   product: "Product",
+
   about: "About Us",
   achievements: "Achievements",
   news: "News",
@@ -61,20 +63,20 @@ const pageTitles: Record<Page, string> = {
 const socialMediaInfo = [
   {
     icon: faFacebook,
-    url: "https://www.facebook.com/blackcube.kh",
+    url: "#",
   },
   {
     icon: faInstagram,
-    url: "https://www.instagram.com/blackcube.kh",
+    url: "#",
   },
   {
     icon: faLinkedin,
-    url: "https://www.linkedin.com/company/blackcube-kh",
+    url: "#",
   },
   {
     icon: faTiktok,
-    url: "https://www.tiktok.com/@blackcube.kh",
-  }
+    url: "#",
+  },
 ];
 
 export function AppShell({
@@ -156,17 +158,17 @@ function Nav({
       <div className="mx-auto  flex h-16 max-w-7xl items-center justify-between px-6 sm:px-8 lg:px-10">
         <button
           onClick={() => setPage("home")}
-          className="shrink-0 font-display text-xl font-bold tracking-[-0.03em] text-foreground"
+          className="shrink-0 cursor-pointer font-display text-xl font-bold tracking-[-0.03em] text-foreground"
         >
           BLACK <span className="text-primary">CUBE</span>
         </button>
 
-        <div className="hidden flex-1 items-center     justify-center  md:flex">
+        <div className="hidden flex-1 items-center    justify-center  md:flex">
           {l.nav.map((label, i) => (
             <button
               key={label}
               onClick={() => setPage(l.navKeys[i])}
-              className={` cursor-pointer rounded-lg px-3 py-2 text-sm font-medium transition ${page === l.navKeys[i] ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
+              className={` cursor-pointer rounded-lg  px-3 py-2 font-bold  transition ${page === l.navKeys[i] ? "text-primary" : "text-muted-foreground hover:text-foreground"}`}
             >
               {label}
             </button>
@@ -176,19 +178,19 @@ function Nav({
         <div className="flex items-center gap-3">
           <button
             onClick={() => setLang(lang === "en" ? "kh" : "en")}
-            className="rounded-full border border-border bg-muted px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground"
+            className="rounded-full cursor-pointer border border-border bg-muted px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground"
           >
             {lang === "en" ? "KH" : "EN"}
           </button>
           <button
             onClick={() => setPage("feedback")}
-            className="hidden rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground md:inline-flex"
+            className="hidden cursor-pointer  rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground md:inline-flex"
           >
             {l.giveFeedback}
           </button>
           <button
             onClick={() => setOpen((v) => !v)}
-            className="rounded-lg p-2 text-2xl text-foreground md:hidden"
+            className="rounded-lg cursor-pointer p-2 text-2xl text-foreground md:hidden"
           >
             {open ? "✕" : "☰"}
           </button>
@@ -205,7 +207,7 @@ function Nav({
                   setPage(l.navKeys[i]);
                   setOpen(false);
                 }}
-                className={`rounded-lg px-2 py-2 text-left text-sm font-medium ${page === l.navKeys[i] ? "text-primary" : "text-foreground"}`}
+                className={`rounded-lg cursor-pointer px-2 py-2 text-left text-sm font-medium ${page === l.navKeys[i] ? "text-primary" : "text-foreground"}`}
               >
                 {label}
               </button>
@@ -215,7 +217,7 @@ function Nav({
                 setPage("feedback");
                 setOpen(false);
               }}
-              className="mt-2 inline-flex w-fit rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
+              className="mt-2 cursor-pointer inline-flex w-fit rounded-full bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground"
             >
               {l.giveFeedback}
             </button>
@@ -241,7 +243,7 @@ function Footer({
             <div className="mb-3 font-display text-2xl font-bold text-foreground">
               BLACK <span className="text-primary">CUBE</span>
             </div>
-            <p className="max-w-sm text-sm leading-7 text-muted-foreground">
+            <p className="max-w-sm  leading-7 text-muted-foreground">
               {l.footerDesc}
             </p>
             <div className="mt-5 flex gap-3">
@@ -251,7 +253,7 @@ function Footer({
                   href={info.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-muted text-base"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg border border-border bg-muted "
                 >
                   <FontAwesomeIcon icon={info.icon} />
                 </a>
@@ -259,7 +261,7 @@ function Footer({
             </div>
           </div>
           <div>
-            <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+            <div className="mb-4 underline  font-bold uppercase tracking-[0.16em] text-muted-foreground">
               Navigate
             </div>
             <div className="flex flex-col gap-2">
@@ -267,7 +269,7 @@ function Footer({
                 <button
                   key={label}
                   onClick={() => setPage(l.navKeys[i])}
-                  className="text-left text-sm text-muted-foreground transition hover:text-foreground"
+                  className="text-left cursor-pointer text-sm text-muted-foreground transition hover:text-foreground"
                 >
                   {label}
                 </button>
@@ -275,18 +277,18 @@ function Footer({
             </div>
           </div>
           <div>
-            <div className="mb-4 text-[11px] font-bold uppercase tracking-[0.16em] text-muted-foreground">
+            <div className="mb-4 underline  font-bold uppercase tracking-[0.16em] text-muted-foreground">
               Contact
             </div>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <div>hello@blackcube.kh</div>
-              <div>Phnom Penh, Cambodia</div>
-              <div>@blackcube.kh</div>
+              <div>Email: hello@blackcube.kh</div>
+              <div>Location : National University of Battambang, Battambang City, Cambodia</div>
+              <div>Phone: +855 12 345 678</div>
               <button
                 onClick={() => setPage("feedback")}
-                className="mt-2 text-left font-semibold text-primary"
+                className="mt-2 cursor-pointer text-left font-semibold text-primary"
               >
-                → Give Feedback
+                👉 Give Feedback
               </button>
             </div>
           </div>
@@ -295,7 +297,17 @@ function Footer({
           <div>{l.footerCopy}</div>
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faHouse} />
-            <span>Made with BlackCube Developer</span>
+            <span>
+              Made with{" "}
+              <a
+                href="https://www.linkedin.com/in/kimnam-seng-31595b2b8/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-primary hover:underline"
+              >
+                BlackCube Developer
+              </a>
+            </span>
           </div>
         </div>
       </div>

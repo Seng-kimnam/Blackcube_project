@@ -1,9 +1,9 @@
-export type Page = 'home' | 'product'| 'about' | 'achievements' | 'news' | 'feedback' | 'contact'
+export type Page = 'home' | 'product' | 'about' | 'achievements' | 'news' | 'feedback' | 'contact'
 export type Lang = 'en' | 'kh'
 
 export const t = {
   en: {
-    nav: ['Home', 'Product', 'About Us', 'Achievements', 'News', 'Contact'],
+    nav: ['Home', 'Product',  'About Us', 'Achievements', 'News', 'Contact'],
     navKeys: ['home', 'product', 'about', 'achievements', 'news', 'contact'] as Page[],
     giveFeedback: 'Give Feedback',
     heroTag: 'Cambodian Innovation',
@@ -42,27 +42,70 @@ export const t = {
     footerCopy: '© 2026 BLACK CUBE. All rights reserved.',
   },
   kh: {
+    teamInfo : [
+      {
+        id: 1,
+        name: "Sokha Chhun",
+        role: "Co-Founder & CEO",
+        desc: "Sokha is a visionary entrepreneur with a passion for food innovation. He leads the team with a focus on product development and market strategy.",
+        image:
+          "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_21-11-20.jpg",
+      },
+      {
+        id: 2,
+        name: "Meanrith Yurin",
+        role: "Co-Founder & COO",
+        desc: "Yurin is the operational backbone of BLACK CUBE. She ensures that our supply chain and production processes run smoothly.",
+        image:
+          "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-09_21-11-20.jpg",
+      },
+    
+      {
+        id: 3,
+        name: "Chanrithy Chhun",
+        role: "Marketing Director",
+        desc: "Chanrithy is responsible for driving brand awareness and customer engagement. She leverages digital marketing strategies to connect with our audience.",
+        image:
+          "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2_2026-08-09_21-11-20.jpg",
+      },
+      {
+        id: 4,
+        name: "Vuthy Chhun",
+        role: "Operations Manager",
+        desc: "Vuthy oversees our day-to-day operations, ensuring efficiency and quality in every aspect of our business.",
+        image:
+          "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_4_2026-08-09_21-11-20.jpg",
+      },
+      {
+        id: 5,
+        name: "Sophea Chhun",
+        role: "Product Development Lead",
+        desc: "Sophea leads our product development team, focusing on creating innovative and high-quality food products that meet our customers' needs.",
+        image:
+          "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_5_2026-08-09_21-11-20.jpg",
+      },
+    ],
     nav: ['ទំព័រដើម', 'ផលិតផល',  'អំពីយើង', 'សិទ្ធិ​សម្រេច', 'ព័ត៌មាន', 'ទំនាក់ទំនង'],
-    navKeys: ['home', 'product',  'about', 'achievements', 'news', 'contact'] as Page[],
-    giveFeedback: 'ផ្តល់មតិ',
+    navKeys: ['home', 'product', 'about', 'achievements', 'news', 'contact'] as Page[],
+    giveFeedback: 'ផ្តល់មតិរបស់អ្នក',
     heroTag: 'នវានុវត្តន៍កម្ពុជា',
     heroTitle: 'ស៊ុប, សាមញ្ញ។',
-    heroSub: 'BLACK CUBE គឺជាគ្រឿងសម្រាប់ធ្វើស៊ុបមាន់ខ្មៅ — ផ្ទុកនូវគ្រឿងផ្សំដើមកម្ពុជា សម្រាប់ផ្ទះបាយទំនើប។',
+    heroSub: 'BLACK CUBE គឺជាគ្រឿងសម្រាប់ធ្វើស៊ុបមាន់ខ្មៅ — ផ្ទុកនូវគ្រឿងផ្សំដើមនៅកម្ពុជា សម្រាប់ផ្ទះបាយសម័យថ្មី។',
     discoverBtn: 'រកស្វែង BLACK CUBE',
     ourProductBtn: 'ផលិតផលរបស់យើង',
     whyTitle: 'ហេតុអ្វីបានជា BLACK CUBE?',
     whyItems: [
-      { icon: '⚡', title: 'ភាពងាយស្រួល', desc: 'ស៊ុបរួចរាល់ក្នុងពេលតិច — គ្មានការត្រៀម។' },
+      { icon: '⚡', title: 'មានភាពងាយស្រួល', desc: 'ស៊ុបរួចរាល់ក្នងរយ:ពេលខ្លី' },
       { icon: '🌿', title: 'គ្រឿងផ្សំក្នុងស្រុក', desc: 'ចេញពីស្រែចំការកម្ពុជា។ រសជាតិពិតប្រាកដ។' },
       { icon: '💰', title: 'តម្លៃសមរម្យ', desc: 'គ្រាន់តែ ៤,០០០ រៀល ក្នុង១គ្រាប់។' },
-      { icon: '🍲', title: 'ឆ្ងាញ់ ហើយមានសុខភាព', desc: 'ខ្លឹមមាន់ខ្មៅក្នុងគ្រប់ស្លាប់ — ពេញចិត្ត។' },
+      { icon: '🍲', title: 'ឆ្ងាញ់ ហើយមានសុខភាពល្អ', desc: 'ខ្លឹមមាន់ខ្មៅក្នុងគ្រប់ស្លាប់ - ពេញចិត្ត។' },
     ],
     howTitle: 'របៀបប្រើ',
     steps: [
       { num: '០១', title: 'ស្ងោរទឹក', desc: 'ស្ងោរទឹក ៥០០ មីលីលីត្រ ។' },
       { num: '០២', title: 'ដាក់ BLACK CUBE', desc: 'ដាក់គ្រាប់មួយ ហើយឃើញវាក្លាយជានំប៉័ង។' },
       { num: '០៣', title: 'ដាក់គ្រឿងផ្សំ', desc: 'ដាក់សាច់មាន់ បន្លែ ឬមី។' },
-      { num: '០៤', title: '味わう', desc: 'ស្ងោររយៈពេល ១០ នាទី។ បរិភោគក្ដៅ។' },
+      { num: '០៤', title: 'រួចទទួលទានជាការស្រច', desc: 'ស្ងោររយៈពេល ១០ នាទី។ បរិភោគក្ដៅ។' },
     ],
     benefitsTitle: 'អត្ថប្រយោជន៍',
     benefits: ['ជាគ្រឿងស៊ុបមាន់ខ្មៅ', 'គ្មានថ្នាំថែទាំសិប្បនិម្មិត', 'ហាឡាល់', 'ស្តើង ងាយស្រួលដឹក', 'រសជាតិដូចគ្នា', 'គាំទ្រកសិករក្នុងស្រុក'],
@@ -76,7 +119,7 @@ export const t = {
     ctaTitle: 'ចង់ភ្លក្ខរសជាតិ?',
     ctaSub: 'ស្ងោរស៊ុបមាន់ខ្មៅពិតប្រាកដ ងាយស្រួល ឆ្ងាញ់។',
     ctaBtn: 'បញ្ជាទិញ',
-    ctaFeedback: 'ផ្តល់មតិ',
+    ctaFeedback: 'ផ្តល់មតិរបស់អ្នក',
     footerDesc: 'គ្រឿងស៊ុបមាន់ខ្មៅ — ផលិតនៅក្នុងប្រទេសកម្ពុជា។',
     footerCopy: '© 2026 BLACK CUBE. រក្សាសិទ្ធិទាំងអស់។',
   },
@@ -84,21 +127,22 @@ export const t = {
 
 export type TranslationSet = (typeof t)['en']
 
-export const SOUP_IMG = 'https://images.unsplash.com/photo-1652088079703-38f4a8d6b981?w=900&h=1100&fit=crop&auto=format'
-export const SOUP_BOWL = 'https://images.unsplash.com/photo-1537020048390-31fe7d2cab4a?w=700&h=500&fit=crop&auto=format'
-export const SOUP2 = 'https://images.unsplash.com/photo-1778079840437-74db44e6edb9?w=700&h=500&fit=crop&auto=format'
+export const SOUP_IMG = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_6_2026-08-11_11-36-17.jpg'
+export const SOUP_BOWL = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Team%206%20Black%20Cube.png'
+export const SOUP2 = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Screenshot%202026-08-11%20132119.png'
+export const CUBE_IMG = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Team%206%20Black%20Cube%20(1).png?auto=format,compress&fit=crop&w=1024&h=1024'
 
 export const achievements = [
-  { icon: '', title: 'Dynamic Agripreneur Bootcamp', subtitle: 'Season 2 — Top Finalist', year: '2024', desc: 'Competed against student startups nationwide. Awarded $500 seed funding.' },
-  { icon: '', title: '$500 Seed Fund', subtitle: 'Official Grant', year: '2024', desc: 'Capital allocated to ingredients, packaging, labels, and logistics.' },
-  { icon: '', title: 'Student Entrepreneurship Award', subtitle: 'Recognition of Excellence', year: '2024', desc: 'Recognized for innovation in food technology and local ingredient utilization.' },
-  { icon: '🇰🇭', title: 'Cambodian Food Innovation', subtitle: 'Local Pride', year: '2024', desc: 'Featured as a model project for student-led agri-food startups in Cambodia.' },
+  { icon: '', title: 'Dynamic Agripreneur Bootcamp', subtitle: 'Season 2 — Top Finalist', year: '2026', desc: 'Competed against student startups nationwide. Awarded $500 seed funding.' },
+  { icon: '', title: '$500 Seed Fund', subtitle: 'Official Grant', year: '2026', desc: 'Capital allocated to ingredients, packaging, labels, and logistics.' },
+  { icon: '', title: 'Student Entrepreneurship Award', subtitle: 'Recognition of Excellence', year: '2026', desc: 'Recognized for innovation in food technology and local ingredient utilization.' },
+  { icon: '', title: 'Cambodian Food Innovation', subtitle: 'Local Pride', year: '2026', desc: 'Featured as a model project for student-led agri-food startups in Cambodia.' },
 ]
 
 export const newsItems = [
-  { date: 'Nov 2024', img: SOUP2, title: 'BLACK CUBE Wins Seed Funding at Agripreneur Bootcamp', desc: 'Our team secured $500 in seed funding to bring our black chicken soup cube to market.' },
-  { date: 'Oct 2024', img: SOUP_BOWL, title: 'Product Development: From Idea to Cube', desc: 'How we refined our recipe over three months of testing with local households.' },
-  { date: 'Sep 2024', title: 'Partnering with Local Farms for Black Chicken Supply', img: 'https://images.unsplash.com/photo-1711010345058-442074287e06?w=700&h=500&fit=crop&auto=format', desc: 'We source our black chicken from sustainable small farms across Cambodia.' },
+  { date: 'Nov 2026', img: SOUP2, title: 'BLACK CUBE Wins Seed Funding at Agripreneur Bootcamp', desc: 'Our team secured $500 in seed funding to bring our black chicken soup cube to market.' },
+  { date: 'Oct 2026', img: SOUP_BOWL, title: 'Product Development: From Idea to Cube', desc: 'How we refined our recipe over three months of testing with local households.' },
+  { date: 'Sep 2026', title: 'Partnering with Local Farms for Black Chicken Supply', img: 'https://images.unsplash.com/photo-1711010345058-442074287e06?w=700&h=500&fit=crop&auto=format', desc: 'We source our black chicken from sustainable small farms across Cambodia.' },
 ]
 
 export const ingredients = [
