@@ -1,4 +1,10 @@
-import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { useLocation, useNavigate } from "react-router";
 import type { Page, Lang, TranslationSet } from "@/content";
 import { t } from "@/content";
@@ -82,12 +88,14 @@ export function AppShell({
 
   const showLoader = useCallback(() => {
     setLoaderVisible(true);
-    requestAnimationFrame(() => requestAnimationFrame(() => setLoaderFade(true)));
+    requestAnimationFrame(() =>
+      requestAnimationFrame(() => setLoaderFade(true)),
+    );
     if (loaderTimer.current) window.clearTimeout(loaderTimer.current);
     loaderTimer.current = window.setTimeout(() => {
       setLoaderFade(false);
       window.setTimeout(() => setLoaderVisible(false), 400);
-    },800);
+    }, 800);
   }, []);
 
   useEffect(() => {
@@ -328,8 +336,9 @@ function Footer({
             </div>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
               <a
-                href={`mailto:${l.footerEmail.replace("Email: ", "")}`}
-                className="hover:underline"
+                href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=yurin2t2t2t@gmail.com&amp;su=Portfolio Contact&amp;body=Hello Yurin,"
+                // class="btn btn-outline"
+                target="_blank"
               >
                 {l.footerEmail}
               </a>

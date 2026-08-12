@@ -10,9 +10,11 @@ export type Lang = 'en' | 'kh'
 
 export const SOUP_IMG = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_6_2026-08-11_11-36-17.jpg'
 export const SOUP_BOWL = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Team%206%20Black%20Cube.png'
-export const SOUP2 = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Screenshot%202026-08-11%20132119.png'
+export const SOUP2 = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/lab1.jpg'
+export const NEW2 = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/lab1.jpg'
+export const NEW1 = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/img1.jpg'
 export const CUBE_IMG = 'https://6a79a81351198decb7534fab.imgix.net/sandbox/Team%206%20Black%20Cube%20(1).png?auto=format,compress&fit=crop&w=1024&h=1024'
-
+export const NEW3 = "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_15-07-25.jpg"
 export const t = {
   en: {
     nav: ['Home', 'Product', 'About Us', 'Achievements', 'News', 'Contact'],
@@ -172,9 +174,9 @@ export const t = {
     newsDetail:
       'This is a significant milestone for our team as we continue to grow the BLACK CUBE brand across Cambodia and beyond. We remain committed to quality, authenticity, and supporting local communities.',
     newsItems: [
-      { date: 'April 2026', img: SOUP2, title: 'BLACK CUBE Wins Seed Funding at Agripreneur Bootcamp', desc: 'Our team secured $500 in seed funding to bring our black chicken soup cube to market.' },
-      { date: 'Oct 2026', img: SOUP_BOWL, title: 'Product Development: From Idea to Cube', desc: 'How we refined our recipe over three months of testing with local households.' },
-      { date: 'Sep 2026', title: 'Partnering with Local Farms for Black Chicken Supply', img: 'https://images.unsplash.com/photo-1711010345058-442074287e06?w=700&h=500&fit=crop&auto=format', desc: 'We source our black chicken from sustainable small farms across Cambodia.' },
+      { date: 'April 2026', img: NEW1, title: 'BLACK CUBE Wins Seed Funding at Agripreneur Bootcamp', desc: 'Our team secured $500 in seed funding to bring our black chicken soup cube to market.' , link:"https://www.facebook.com/share/19M25Fpy2y/?mibextid=wwXIfr"}, 
+      { date: 'Oct 2026', img: NEW2, title: 'Product Development: From Idea to Cube', desc: 'How we refined our recipe over three months of testing with local households.' , link :"https://www.facebook.com/share/p/18sujRhHVQ/?mibextid=wwXIfr"},
+      { date: 'Sep 2026', title: 'Partnering with Local Farms for Black Chicken Supply', img: NEW3, desc: 'We source our black chicken from sustainable small farms across Cambodia.' , link : "https://www.facebook.com/share/1Bh3E45f24/?mibextid=wwXIfr"},
     ],
 
     feedbackEyebrow: 'QR Feedback',
@@ -205,7 +207,7 @@ export const t = {
     contactIntro:
       "Have a question, a collaboration idea, or want to stock BLACK CUBE in your store? We'd love to connect.",
     contactItems: [
-      { icon: '1', label: 'Email', link: 'mailto:yurin2t2t2t@gmail.com' , value : "blackcube email" },
+      { icon: '1', label: 'Email', link: 'https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=yurin2t2t2t@gmail.com&amp;su=Portfolio Contact&amp;body=Hello Yurin,"' , value : "blackcube email" },
       { icon: '2', label: 'Location', link: 'https://maps.app.goo.gl/S8g6E3DgheTuZWbj8' , value : "National University of Battambang, Battambang City, Cambodia" },
       { icon: '3', label: 'TikTok', link: 'https://www.tiktok.com/@blacksoupcoup26' , value : "blacksoupcoup26" },
       { icon: '4', label: 'Facebook', link: 'https://www.facebook.com/profile.php?id=61560204866804' , value : "ដុំស៊ុបខ្មៅ - Black Soup Cube" },
@@ -402,9 +404,9 @@ export const t = {
     newsDetail:
       'នេះជាព្រឹត្តិការណ៍សំខាន់សម្រាប់ក្រុមរបស់យើង ខណៈដែលយើងបន្តពង្រីកម៉ាក BLACK CUBE នៅកម្ពុជា និងលើសពីនេះ។ យើងនៅតែប្តេជ្ញាចិត្តចំពោះគុណភាព ភាពពិតប្រាកដ និងការគាំទ្រសហគមន៍ក្នុងស្រុក។',
     newsItems: [
-      { date: 'មេសា 2026', img: SOUP2, title: 'BLACK CUBE ឈ្នះមូលនិធិចាប់ផ្តើមនៅ Agripreneur Bootcamp', desc: 'ក្រុមរបស់យើងទទួលបានមូលនិធិចាប់ផ្តើម $500 ដើម្បីនាំគ្រឿងស៊ុបមាន់ខ្មៅរបស់យើងទៅទីផ្សារ។' },
-      { date: 'ឧសភា 2026', img: SOUP_BOWL, title: 'ការអភិវឌ្ឍផលិតផល: ពីគំនិតដល់គ្រាប់', desc: 'របៀបដែលយើងកែលម្អរូបមន្តលើសពីបីខែនៃការសាកល្បងជាមួយគ្រួសារក្នុងស្រុក។' },
-      { date: 'កញ្ញា 2026', title: 'ការចាប់ដៃគូជាមួយកសិដ្ឋានក្នុងស្រុកសម្រាប់ការផ្គត់ផ្គង់មាន់ខ្មៅ', img: 'https://images.unsplash.com/photo-1711010345058-442074287e06?w=700&h=500&fit=crop&auto=format', desc: 'យើងស្វែងរកមាន់ខ្មៅពីកសិដ្ឋានតូចៗប្រកបដោយនិរន្តរភាពទូទាំងប្រទេសកម្ពុជា។' },
+      { date: 'មេសា 2026', img: NEW1, title: 'BLACK CUBE ឈ្នះមូលនិធិចាប់ផ្តើមនៅ Agripreneur Bootcamp', desc: 'ក្រុមរបស់យើងទទួលបានមូលនិធិចាប់ផ្តើម $500 ដើម្បីនាំគ្រឿងស៊ុបមាន់ខ្មៅរបស់យើងទៅទីផ្សារ។', link:"https://www.facebook.com/share/19M25Fpy2y/?mibextid=wwXIfr" },
+      { date: 'ឧសភា 2026', img: NEW2, title: 'ការអភិវឌ្ឍផលិតផល: ពីគំនិតដល់គ្រាប់', desc: 'របៀបដែលយើងកែលម្អរូបមន្តលើសពីបីខែនៃការសាកល្បងជាមួយគ្រួសារក្នុងស្រុក។',link :"https://www.facebook.com/share/p/18sujRhHVQ/?mibextid=wwXIfr" },
+      { date: 'កញ្ញា 2026', title: 'ការចាប់ដៃគូជាមួយកសិដ្ឋានក្នিংស្រျកសម្រាប់ការផ្គត់ផ្គង់មាន់ខ្មៅ', img: NEW3, desc: 'យিাងស្វែងរកមាន់ខ្មៅពးកសដថនតថចថបដយនរនតរភាពទទា។' , link : "https://www.facebook.com/share/1Bh3E45f24/?mibextid=wwXIfr"},
     ],
 
     feedbackEyebrow: 'មតិតាម QR',
@@ -435,7 +437,7 @@ export const t = {
     contactIntro:
       'មានសំណួរ គំនិតសហការ ឬចង់ដាក់ BLACK CUBE លក់ក្នុងហាងរបស់អ្នក? យើងរីករាយក្នុងការទាក់ទង។',
     contactItems: [
-      { icon: '1', label: 'អ៊ីមែល', link: 'mailto:yurin2t2t2t@gmail.com' , value: 'blackcube email' },
+      { icon: '1', label: 'អ៊ីមែល', link: 'https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=yurin2t2t2t@gmail.com&amp;su=Portfolio Contact&amp;body=Hello Yurin,"' , value: 'blackcube email' },
       { icon: '2', label: 'ទីតាំង', link: 'https://maps.app.goo.gl/S8g6E3DgheTuZWbj8' , value : "សាកលវិទ្យាល័យ​ជាតិបាត់ដំបង, ព្រះរាជាណាចក្រកម្ពុជា" },
       { icon: '3', label: 'តិកតុក', link: 'https://www.tiktok.com/@blacksoupcoup26' , value: 'blacksoupcoup26' },
       { icon: '4', label: 'ហ្វេសប៊ុក', link: 'https://www.facebook.com/profile.php?id=61560204866804' , value: 'BLACK CUBE Cambodia' },

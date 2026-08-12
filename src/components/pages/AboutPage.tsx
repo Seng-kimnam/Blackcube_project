@@ -83,7 +83,7 @@ export function AboutPage({ l }: { l: TranslationSet }) {
                   </div>
                 </div>
                 <div className="flex-1 sm:border-l sm:border-border sm:pl-8">
-                  <p className="text-sm leading-7 text-muted-foreground">
+                  <p className="text-lg  leading-7 text-muted-foreground">
                     {member.desc}
                   </p>
                 </div>

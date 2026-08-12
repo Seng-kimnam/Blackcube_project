@@ -3,35 +3,7 @@ import { Card, Section, SectionHeading } from "@/components/Section";
 import type { TranslationSet } from "@/content";
 
 export function NewsPage({ l }: { l: TranslationSet }) {
-  const [selected, setSelected] = useState<number | null>(null);
 
-  if (selected !== null) {
-    const item = l.newsItems[selected];
-    return (
-      <Section className="mx-auto max-w-3xl pt-24">
-        <button
-          onClick={() => setSelected(null)}
-          className="mb-8 flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
-        >
-          {l.backToNews}
-        </button>
-        <div className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
-          {item.date}
-        </div>
-        <h1 className="mt-3 font-display text-3xl font-bold tracking-[-0.02em] text-foreground sm:text-4xl">
-          {item.title}
-        </h1>
-        <img
-          src={item.img}
-          alt={item.title}
-          className="mt-6 aspect-video w-full rounded-[20px] object-cover"
-        />
-        <p className="mt-6 text-base leading-8 text-muted-foreground">
-          {item.desc} {l.newsDetail}
-        </p>
-      </Section>
-    );
-  }
 
   return (
     <Section className="pt-24">
@@ -41,7 +13,7 @@ export function NewsPage({ l }: { l: TranslationSet }) {
           <Card
             key={item.title}
             className="cursor-pointer overflow-hidden p-0 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
-            onClick={() => setSelected(index)}
+            // onClick={() => setSelected(index)}
           >
             <img
               src={item.img}
@@ -58,9 +30,9 @@ export function NewsPage({ l }: { l: TranslationSet }) {
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
                 {item.desc}
               </p>
-              <div className="mt-5 text-sm font-semibold text-primary">
+              <a href={item.link} target="_blank" rel="noopener noreferrer" className="mt-5 text-sm font-semibold text-primary">
                 {l.readMore}
-              </div>
+              </a>
             </div>
           </Card>
         ))}
