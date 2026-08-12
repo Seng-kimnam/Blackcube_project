@@ -1,7 +1,13 @@
-const ALLOWED_ORIGINS = ["https://blackcube.website"];
+const ALLOWED_ORIGINS = [
+  "https://blackcube.website",
+  "https://seng-kimnam.github.io",
+  // test mode
+  "http://localhost:5173",
+  "http://localhost:8443",
+];
 
 function corsHeaders(origin) {
-  if (origin && ALLOWED_ORIGINS.some((allowed) => origin.startsWith(allowed))) {
+  if (origin && origin.startsWith(ALLOWED_ORIGINS)) {
     return { "Access-Control-Allow-Origin": origin, Vary: "Origin" };
   }
   return {};

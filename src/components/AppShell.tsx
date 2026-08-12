@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { useLocation, useNavigate } from "react-router";
 import type { Page, Lang, TranslationSet } from "@/content";
 import { t } from "@/content";
@@ -49,33 +49,19 @@ const pathToPage = (pathname: string): Page => {
   }
 };
 
-const pageTitles: Record<Page, string> = {
-  home: "Home",
-  product: "Product",
-
-  about: "About Us",
-  achievements: "Achievements",
-  news: "News",
-  feedback: "Feedback",
-  contact: "Contact",
-};
-
 const socialMediaInfo = [
   {
     icon: faFacebook,
-    url: "#",
+    url: "https://www.facebook.com/profile.php?id=61560204866804",
   },
-  {
-    icon: faInstagram,
-    url: "#",
-  },
+
   {
     icon: faLinkedin,
-    url: "#",
+    url: "https://www.linkedin.com/in/yurin-meanrith-1a5423314/",
   },
   {
     icon: faTiktok,
-    url: "#",
+    url: "https://www.tiktok.com/@blacksoupcoup26",
   },
 ];
 
@@ -89,11 +75,41 @@ export function AppShell({
   const [lang, setLang] = useState<Lang>("en");
   const page = pathToPage(location.pathname);
   const l = t[lang];
+  const [loaderVisible, setLoaderVisible] = useState(false);
+  const [loaderFade, setLoaderFade] = useState(false);
+  const loaderTimer = useRef<number | null>(null);
+  const firstRender = useRef(true);
+
+  const showLoader = useCallback(() => {
+    setLoaderVisible(true);
+    requestAnimationFrame(() => requestAnimationFrame(() => setLoaderFade(true)));
+    if (loaderTimer.current) window.clearTimeout(loaderTimer.current);
+    loaderTimer.current = window.setTimeout(() => {
+      setLoaderFade(false);
+      window.setTimeout(() => setLoaderVisible(false), 400);
+    },800);
+  }, []);
 
   useEffect(() => {
-    document.title = `BLACK CUBE | ${pageTitles[page]}`;
+    if (firstRender.current) {
+      firstRender.current = false;
+      return;
+    }
+    showLoader();
+  }, [location.pathname, showLoader]);
+
+  useEffect(
+    () => () => {
+      if (loaderTimer.current) window.clearTimeout(loaderTimer.current);
+    },
+    [],
+  );
+
+  useEffect(() => {
+    const idx = l.navKeys.indexOf(page);
+    document.title = `BLACK CUBE | ${idx >= 0 ? l.nav[idx] : ""}`;
     document.documentElement.lang = lang === "kh" ? "km" : "en";
-  }, [page, lang]);
+  }, [page, lang, l]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "instant" });
@@ -104,16 +120,42 @@ export function AppShell({
   };
 
   return (
-    <div className="min-h-screen bg-background font-[Outfit,sans-serif] text-foreground">
+    <div
+      className={`min-h-screen bg-background text-foreground ${
+        lang === "kh"
+          ? "font-[Battambang,Preahvihear,sans-serif]"
+          : "font-[Outfit,sans-serif]"
+      }`}
+    >
       <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} l={l} />
       <main>{children({ page, setPage, lang, setLang, l })}</main>
       <Footer l={l} setPage={setPage} />
-      <ScrollToTopButton />
+      <ScrollToTopButton l={l} />
+      {loaderVisible ? <PageLoader fade={loaderFade} /> : null}
     </div>
   );
 }
 
-function ScrollToTopButton() {
+function PageLoader({ fade }: { fade: boolean }) {
+  return (
+    <div
+      className={`bc-loader-overlay ${fade ? "opacity-100" : "opacity-0"}`}
+      role="status"
+      aria-label="Loading"
+    >
+      <div className="bc-loader-scene">
+        <div className="bc-loader-cube">
+          {["front", "back", "right", "left", "top", "bottom"].map((face) => (
+            <div key={face} className={`bc-loader-face bc-loader-${face}`} />
+          ))}
+        </div>
+      </div>
+      <div className="bc-loader-brand">BLACK CUBE</div>
+    </div>
+  );
+}
+
+function ScrollToTopButton({ l }: { l: TranslationSet }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -126,8 +168,8 @@ function ScrollToTopButton() {
   return (
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      aria-label="Scroll to top"
-      className={`fixed bottom-0 right-0 z-50 mb-6 mr-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:bg-accent ${
+      aria-label={l.scrollTop}
+      className={`fixed bottom-0 cursor-pointer right-0 z-50 mb-6 mr-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg transition-all duration-300 hover:bg-accent ${
         visible
           ? "translate-y-0 opacity-100"
           : "pointer-events-none translate-y-4 opacity-0"
@@ -178,7 +220,7 @@ function Nav({
         <div className="flex items-center gap-3">
           <button
             onClick={() => setLang(lang === "en" ? "kh" : "en")}
-            className="rounded-full cursor-pointer border border-border bg-muted px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-foreground"
+            className="rounded-full cursor-pointer border border-border bg-muted px-3 py-1.5   font-semibold uppercase tracking-[0.16em] text-foreground"
           >
             {lang === "en" ? "KH" : "EN"}
           </button>
@@ -246,7 +288,11 @@ function Footer({
             <p className="max-w-sm  leading-7 text-muted-foreground">
               {l.footerDesc}
             </p>
-            <div className="mt-5 flex gap-3">
+            <h1 className="my-4 font-bold">
+              Our <span className="text-primary"> Social media</span>
+            </h1>
+
+            <div className=" flex gap-3">
               {socialMediaInfo.map((info, i) => (
                 <a
                   key={i}
@@ -261,8 +307,8 @@ function Footer({
             </div>
           </div>
           <div>
-            <div className="mb-4 underline  font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              Navigate
+            <div className="mb-4 underline  font-bold uppercase  text-muted-foreground">
+              {l.navTitle}
             </div>
             <div className="flex flex-col gap-2">
               {l.nav.map((label, i) => (
@@ -277,18 +323,23 @@ function Footer({
             </div>
           </div>
           <div>
-            <div className="mb-4 underline  font-bold uppercase tracking-[0.16em] text-muted-foreground">
-              Contact
+            <div className="mb-4 underline  font-bold uppercase  text-muted-foreground">
+              {l.footerContactTitle}
             </div>
             <div className="flex flex-col gap-2 text-sm text-muted-foreground">
-              <div>Email: hello@blackcube.kh</div>
-              <div>Location : National University of Battambang, Battambang City, Cambodia</div>
-              <div>Phone: +855 12 345 678</div>
+              <a
+                href={`mailto:${l.footerEmail.replace("Email: ", "")}`}
+                className="hover:underline"
+              >
+                {l.footerEmail}
+              </a>
+              <div>{l.footerLocation}</div>
+              <div>{l.footerPhone}</div>
               <button
                 onClick={() => setPage("feedback")}
                 className="mt-2 cursor-pointer text-left font-semibold text-primary"
               >
-                👉 Give Feedback
+                {l.giveFeedbackArrow}
               </button>
             </div>
           </div>
@@ -298,7 +349,7 @@ function Footer({
           <div className="flex items-center gap-2">
             <FontAwesomeIcon icon={faHouse} />
             <span>
-              Made with{" "}
+              {l.madeWith}{" "}
               <a
                 href="https://www.linkedin.com/in/kimnam-seng-31595b2b8/"
                 target="_blank"

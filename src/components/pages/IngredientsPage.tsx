@@ -1,16 +1,15 @@
 import { Card, Section, SectionHeading } from "@/components/Section";
-import { ingredients } from "@/content";
+import type { TranslationSet } from "@/content";
 
-export function IngredientsPage() {
+export function IngredientsPage({ l }: { l: TranslationSet }) {
   return (
     <Section className="pt-24">
-      <SectionHeading title="Our Ingredients" eyebrow="What's Inside" />
+      <SectionHeading title={l.ingredientsTitle} eyebrow={l.ingredientsEyebrow} />
       <p className="mb-10 max-w-2xl text-base leading-8 text-muted-foreground">
-        Every ingredient in BLACK CUBE is chosen for its role in authentic
-        Cambodian flavor. Nothing artificial. Nothing hidden.
+        {l.ingredientsIntro}
       </p>
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {ingredients.map((item) => (
+        {l.ingredients.map((item) => (
           <Card
             key={item.name}
             className="transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
@@ -31,11 +30,10 @@ export function IngredientsPage() {
       <Card className="mt-8 border-primary/20 bg-[linear-gradient(135deg,rgba(240,180,41,0.08),transparent)] text-center">
         <div className="mb-4 text-4xl">🌿</div>
         <h3 className="font-display text-2xl font-bold text-foreground">
-          100% Natural. Always.
+          {l.ingredientsCardTitle}
         </h3>
         <p className="mx-auto mt-3 max-w-2xl text-sm leading-8 text-muted-foreground">
-          No MSG. No artificial preservatives. No synthetic flavoring. BLACK
-          CUBE uses only ingredients you can pronounce.
+          {l.ingredientsCardText}
         </p>
       </Card>
     </Section>

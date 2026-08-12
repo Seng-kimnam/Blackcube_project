@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, Section } from "@/components/Section";
 import { Popup } from "../Popup";
 import { submitFeedback } from "@/services/forms";
+import type { TranslationSet } from "@/content";
 
 type FormState = { name: string; email: string; comment: string };
 type FormErrors = Partial<Record<keyof FormState, string>>;
@@ -21,9 +22,13 @@ const inputClass = (hasError: boolean) =>
       : "border-border focus:border-primary"
   }`;
 
-export function FeedbackPage() {
+export function FeedbackPage({ l }: { l: TranslationSet }) {
   const [rating, setRating] = useState(0);
-  const [form, setForm] = useState<FormState>({ name: "", email: "", comment: "" });
+  const [form, setForm] = useState<FormState>({
+    name: "",
+    email: "",
+    comment: "",
+  });
   const [errors, setErrors] = useState<FormErrors>({});
   const [ratingError, setRatingError] = useState<string | undefined>();
   const [submitting, setSubmitting] = useState(false);
@@ -32,12 +37,11 @@ export function FeedbackPage() {
   const validate = (): FormErrors => {
     const next: FormErrors = {};
     if (form.name.trim() && form.name.trim().length < 2)
-      next.name = "Name must be at least 2 characters.";
+      next.name = l.errNameShort;
     if (form.email.trim() && !EMAIL_RE.test(form.email.trim()))
-      next.email = "Enter a valid email address.";
-    if (!form.comment.trim()) next.comment = "Comment is required.";
-    else if (form.comment.trim().length < 10)
-      next.comment = "Comment must be at least 10 characters.";
+      next.email = l.errEmail;
+    if (!form.comment.trim()) next.comment = l.errCommentReq;
+    else if (form.comment.trim().length < 10) next.comment = l.errCommentShort;
     return next;
   };
 
@@ -49,7 +53,7 @@ export function FeedbackPage() {
   const handleSubmit = async () => {
     let hasError = false;
     if (!rating) {
-      setRatingError("Please select a rating.");
+      setRatingError(l.errRating);
       hasError = true;
     }
     const next = validate();
@@ -67,15 +71,14 @@ export function FeedbackPage() {
       setForm({ name: "", email: "", comment: "" });
       setNotify({
         variant: "success",
-        title: "Thank You!",
-        message:
-          "Your feedback means the world to us. Every response helps us make BLACK CUBE better for everyone.",
+        title: l.thanksTitle,
+        message: l.thanksMsg,
       });
     } catch {
       setNotify({
         variant: "error",
-        title: "Couldn't Submit",
-        message: "Something went wrong. Please check your connection and try again.",
+        title: l.failTitle,
+        message: l.failMsg,
       });
     } finally {
       setSubmitting(false);
@@ -85,20 +88,20 @@ export function FeedbackPage() {
   return (
     <Section className="mx-auto max-w-2xl pt-24">
       <div className="mb-8">
-        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
-          QR Feedback
+        <p className="mb-3   font-bold uppercase tracking-[0.2em] text-primary">
+          {l.feedbackEyebrow}
         </p>
         <h1 className="font-display text-3xl font-bold tracking-[-0.02em] text-foreground sm:text-4xl">
-          Share Your Experience
+          {l.feedbackTitle}
         </h1>
         <p className="mt-3 text-sm leading-7 text-muted-foreground">
-          Tried BLACK CUBE? We'd love to hear what you think.
+          {l.feedbackIntro}
         </p>
       </div>
       <Card className="space-y-5">
         <div>
           <label className="mb-2 block text-sm font-semibold text-foreground">
-            Rating
+            {l.ratingLabel}
           </label>
           <div className="flex gap-2">
             {[1, 2, 3, 4, 5].map((star) => (
@@ -122,14 +125,14 @@ export function FeedbackPage() {
         {[
           {
             key: "name" as const,
-            label: "Name (optional)",
-            placeholder: "Your name",
+            label: l.nameLabel,
+            placeholder: l.namePlaceholder,
             type: "text",
           },
           {
             key: "email" as const,
-            label: "Email (optional)",
-            placeholder: "your@email.com",
+            label: l.emailLabel,
+            placeholder: l.emailPlaceholder,
             type: "email",
           },
         ].map((field) => (
@@ -151,10 +154,10 @@ export function FeedbackPage() {
         ))}
         <div>
           <label className="mb-2 block text-sm font-semibold text-foreground">
-            Comment
+            {l.commentLabel}
           </label>
           <textarea
-            placeholder="Tell us about your experience..."
+            placeholder={l.commentPlaceholder}
             value={form.comment}
             onChange={(e) => update("comment", e.target.value)}
             rows={4}
@@ -167,9 +170,9 @@ export function FeedbackPage() {
         <button
           onClick={handleSubmit}
           disabled={submitting}
-          className="w-full rounded-2xl bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+          className="w-full rounded-2xl cursor-pointer bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
         >
-          {submitting ? "Submitting..." : "Submit Feedback"}
+          {submitting ? l.submitting : l.submitBtn}
         </button>
       </Card>
       <Popup
@@ -178,7 +181,7 @@ export function FeedbackPage() {
         variant={notify?.variant ?? "success"}
         title={notify?.title}
         message={notify?.message}
-        confirmLabel={notify?.variant === "error" ? "Try Again" : "Done"}
+        confirmLabel={notify?.variant === "error" ? l.tryAgain : l.done}
         cancelLabel={undefined}
         onConfirm={notify?.variant === "error" ? handleSubmit : undefined}
       />

@@ -1,78 +1,30 @@
 import { Card, Section, SectionHeading } from "@/components/Section";
-import { SOUP_IMG } from "@/content";
+import type { TranslationSet } from "@/content";
 
-const teamInfo = [
-  {
-    id: 1,
-    name: "Sokha Chhun",
-    role: "Co-Founder & CEO",
-    desc: "Sokha is a visionary entrepreneur with a passion for food innovation. He leads the team with a focus on product development and market strategy.",
-    image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_21-11-20.jpg",
-  },
-  {
-    id: 2,
-    name: "Meanrith Yurin",
-    role: "Co-Founder & COO",
-    desc: "Yurin is the operational backbone of BLACK CUBE. She ensures that our supply chain and production processes run smoothly.",
-    image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-09_21-11-20.jpg",
-  },
-
-  {
-    id: 3,
-    name: "Chanrithy Chhun",
-    role: "Marketing Director",
-    desc: "Chanrithy is responsible for driving brand awareness and customer engagement. She leverages digital marketing strategies to connect with our audience.",
-    image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2_2026-08-09_21-11-20.jpg",
-  },
-  {
-    id: 4,
-    name: "Vuthy Chhun",
-    role: "Operations Manager",
-    desc: "Vuthy oversees our day-to-day operations, ensuring efficiency and quality in every aspect of our business.",
-    image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2026-08-11_13-30-20.jpg",
-  },
-  {
-    id: 5,
-    name: "Sophea Chhun",
-    role: "Product Development Lead",
-    desc: "Sophea leads our product development team, focusing on creating innovative and high-quality food products that meet our customers' needs.",
-    image:
-      "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_5_2026-08-09_21-11-20.jpg",
-  },
-];
-export function AboutPage() {
+export function AboutPage({ l }: { l: TranslationSet }) {
   return (
     <Section className="pt-24">
       <div className="grid gap-12 lg:grid-cols-[1fr_1fr] lg:items-center">
         <div>
-          <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
-            Our Story
+          <p className="mb-3  font-bold uppercase tracking-[0.2em] text-primary">
+            {l.aboutEyebrow}
           </p>
-          <h1 className="font-display text-4xl font-bold tracking-[-0.02em] text-foreground sm:text-5xl">
-            Born in Cambodia.
-            <br />
-            Built by students.
+          <h1 className="font-display text-4xl font-bold  leading-20 text-foreground sm:text-5xl">
+            {l.aboutTitle.split("\n").map((line, i, lines) => (
+              <span key={line}>
+                {line}
+                {i < lines.length - 1 ? <br /> : null}
+              </span>
+            ))}
           </h1>
           <p className="mt-6 text-base leading-8 text-muted-foreground">
-            BLACK CUBE began as a student project at the Dynamic Agripreneur
-            Bootcamp Season 2. Our team of four university students saw a gap:
-            authentic Cambodian chicken soup took hours to make. We asked — what
-            if it took 15 minutes?
+            {l.aboutP1}
           </p>
           <p className="mt-4 text-base leading-8 text-muted-foreground">
-            After months of recipe testing, sourcing from local Cambodian farms,
-            and iterating on packaging, we created the BLACK CUBE — a
-            ready-to-use soup cube that brings the full depth of black chicken
-            soup to any kitchen, anywhere.
+            {l.aboutP2}
           </p>
           <p className="mt-4 text-base leading-8 text-muted-foreground">
-            We were awarded $500 in seed funding to bring our vision to life.
-            That investment fueled our ingredients, packaging, and the beginning
-            of something real.
+            {l.aboutP3}
           </p>
         </div>
         <img
@@ -85,16 +37,16 @@ export function AboutPage() {
       <div className="mt-16 grid gap-5 md:grid-cols-2">
         {[
           {
-            label: "Vision",
-            text: "To become Cambodia's leading convenience food brand — one that honors local flavors and supports local farmers.",
+            label: l.visionLabel,
+            text: l.visionText,
           },
           {
-            label: "Mission",
-            text: "To make authentic Cambodian soup accessible to every household through innovative, natural food products.",
+            label: l.missionLabel,
+            text: l.missionText,
           },
         ].map((item) => (
           <Card key={item.label}>
-            <div className="mb-3 text-[11px] font-bold uppercase tracking-[0.16em] text-primary">
+            <div className="mb-3   font-bold uppercase tracking-[0.16em] text-primary">
               {item.label}
             </div>
             <p className="text-sm leading-8 text-foreground">{item.text}</p>
@@ -103,25 +55,39 @@ export function AboutPage() {
       </div>
 
       <div className="mt-16">
-        <SectionHeading title="Our Team" />
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {teamInfo.map((member) => (
+        <SectionHeading title={l.teamTitle} />
+        <div className="grid gap-5">
+          {l.teamInfo.map((member) => (
             <Card
               key={member.name}
-              className="text-center transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
+              className="transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
             >
-              <div className="mx-auto mb-4 flex  items-center justify-center rounded-full border border-primary/20 bg-primary/10 text-2xl">
-                <img src={member.image} alt={member.name} />
+              <div
+                className={`flex flex-col items-center gap-6 sm:items-center ${
+                  member.id % 2 === 0 ? "sm:flex-row-reverse" : "sm:flex-row"
+                }`}
+              >
+                <div className="flex  flex-col items-center gap-3 sm:w-48">
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="h-40 w-40 rounded-full border border-primary/20 bg-primary/10 object-cover"
+                  />
+                  <div className="text-center">
+                    <div className="font-display text-lg font-bold text-foreground">
+                      {member.name}
+                    </div>
+                    <div className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
+                      {member.role}
+                    </div>
+                  </div>
+                </div>
+                <div className="flex-1 sm:border-l sm:border-border sm:pl-8">
+                  <p className="text-sm leading-7 text-muted-foreground">
+                    {member.desc}
+                  </p>
+                </div>
               </div>
-              <div className="text-base font-semibold text-foreground">
-                {member.name}
-              </div>
-              <div className="mt-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                {member.role}
-              </div>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                {member.desc}
-              </p>
             </Card>
           ))}
         </div>

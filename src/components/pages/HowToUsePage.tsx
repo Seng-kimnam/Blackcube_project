@@ -5,7 +5,7 @@ import { ChefHat, CookingPot, HandCoins, Salad } from "lucide-react";
 export function HowToUsePage({ l }: { l: TranslationSet }) {
   return (
     <Section className="pt-24">
-      <SectionHeading title={l.howTitle} eyebrow="So Simple" centered />
+      <SectionHeading title={l.howTitle} eyebrow={l.howEyebrow} centered />
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
         {l.steps.map((step, i) => (
           <Card key={step.num} className="relative">
@@ -28,15 +28,10 @@ export function HowToUsePage({ l }: { l: TranslationSet }) {
       <Card className="mt-8 grid gap-8 lg:grid-cols-[1fr_1fr] lg:items-center">
         <div>
           <h3 className="font-display text-2xl font-bold text-foreground">
-            Pro Tips
+            {l.proTipsTitle}
           </h3>
           <ul className="mt-6 space-y-3 text-sm text-muted-foreground">
-            {[
-              "Add fresh ginger for extra warmth",
-              "Try with rice noodles for a filling meal",
-              "Squeeze lime just before serving",
-              "Use one cube per 400–500ml water",
-            ].map((tip) => (
+            {l.proTips.map((tip) => (
               <li key={tip} className="flex gap-3">
                 <span className="text-primary">→</span>
                 <span>{tip}</span>

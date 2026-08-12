@@ -1,19 +1,19 @@
 import { useState } from "react";
 import { Card, Section, SectionHeading } from "@/components/Section";
-import { newsItems } from "@/content";
+import type { TranslationSet } from "@/content";
 
-export function NewsPage() {
+export function NewsPage({ l }: { l: TranslationSet }) {
   const [selected, setSelected] = useState<number | null>(null);
 
   if (selected !== null) {
-    const item = newsItems[selected];
+    const item = l.newsItems[selected];
     return (
       <Section className="mx-auto max-w-3xl pt-24">
         <button
           onClick={() => setSelected(null)}
           className="mb-8 flex items-center gap-2 text-sm text-muted-foreground transition hover:text-foreground"
         >
-          ← Back to News
+          {l.backToNews}
         </button>
         <div className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
           {item.date}
@@ -27,10 +27,7 @@ export function NewsPage() {
           className="mt-6 aspect-video w-full rounded-[20px] object-cover"
         />
         <p className="mt-6 text-base leading-8 text-muted-foreground">
-          {item.desc} This is a significant milestone for our team as we
-          continue to grow the BLACK CUBE brand across Cambodia and beyond. We
-          remain committed to quality, authenticity, and supporting local
-          communities.
+          {item.desc} {l.newsDetail}
         </p>
       </Section>
     );
@@ -38,9 +35,9 @@ export function NewsPage() {
 
   return (
     <Section className="pt-24">
-      <SectionHeading title="News & Stories" eyebrow="Updates" />
+      <SectionHeading title={l.newsTitle} eyebrow={l.newsEyebrow} />
       <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {newsItems.map((item, index) => (
+        {l.newsItems.map((item, index) => (
           <Card
             key={item.title}
             className="cursor-pointer overflow-hidden p-0 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
@@ -52,7 +49,7 @@ export function NewsPage() {
               className="aspect-video w-full object-cover"
             />
             <div className="p-6">
-              <div className="text-sm font-semibold uppercase tracking-[0.16em] text-primary">
+              <div className=" font-semibold uppercase tracking-[0.16em] text-primary">
                 {item.date}
               </div>
               <h3 className="mt-3 font-display text-xl font-bold text-foreground">
@@ -62,7 +59,7 @@ export function NewsPage() {
                 {item.desc}
               </p>
               <div className="mt-5 text-sm font-semibold text-primary">
-                Read More →
+                {l.readMore}
               </div>
             </div>
           </Card>

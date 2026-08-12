@@ -1,10 +1,13 @@
-import { useMemo, useState } from "react";
+import { lazy, Suspense, useState } from "react";
 import { Section, SectionHeading, Card } from "@/components/Section";
 import { Carousel } from "@/components/Carousel";
 import { SOUP_IMG, SOUP_BOWL, SOUP2, type TranslationSet } from "@/content";
-import { Product3DPage } from "./Product3DPage";
 import { Popup } from "../Popup";
 import { ChefHat, CookingPot, HandCoins, Salad } from "lucide-react";
+
+const Product3DPage = lazy(() =>
+  import("./Product3DPage").then((m) => ({ default: m.Product3DPage })),
+);
 
 export function HomePage({
   l,
@@ -23,14 +26,6 @@ export function HomePage({
   ) => void;
 }) {
   const [orderOpen, setOrderOpen] = useState(false);
-  const stats = useMemo(
-    () => [
-      ["4,000", "KHR / cube"],
-      ["100%", "Local ingredients"],
-      ["$500", "Seed funded"],
-    ],
-    [],
-  );
   const slides = [
     {
       src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/img1.jpg",
@@ -65,11 +60,19 @@ export function HomePage({
   return (
     <div>
       <Carousel className="h-64 w-full sm:h-80 lg:h-140" slides={slides} />
-      <Product3DPage />
+      <Suspense
+        fallback={
+          <div className="flex min-h-[420px] w-full items-center justify-center">
+            <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
+          </div>
+        }
+      >
+        <Product3DPage l={l} />
+      </Suspense>
       <Section className="min-h-[calc(100vh-4rem)] pt-24">
         <div className="grid pl-40 items-center gap-16 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="">
-            <div className="mb-7 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
+            <div className="mb-7 inline-flex rounded-full border border-primary/20 bg-primary/10 px-4 py-2   font-bold uppercase tracking-[0.18em] text-primary">
               {l.heroTag}
             </div>
             <h1 className=" text-5xl font-bold tracking-[-0.03em] text-foreground sm:text-6xl lg:text-7xl">
@@ -95,9 +98,9 @@ export function HomePage({
 
             <div className="mt-12 flex flex-wrap gap-8 sm:gap-10">
               {[
-                ["4,000", "KHR / cube"],
-                ["100%", "Local ingredients"],
-                ["$500", "Seed funded"],
+                ["4,000", l.statCube],
+                ["100%", l.statLocal],
+                ["$500", l.statSeed],
               ].map(([val, label]) => (
                 <div key={label}>
                   <div className="font-display text-2xl font-bold text-primary">
@@ -124,7 +127,7 @@ export function HomePage({
                   BLACK CUBE
                 </div>
                 <div className="mt-1 text-xs text-muted-foreground">
-                  Black Chicken Soup Cube · 4,000 KHR
+                  {l.productCaption}
                 </div>
               </div>
             </div>
@@ -191,7 +194,7 @@ export function HomePage({
                 key={benefit}
                 className="flex items-center gap-3 rounded-xl border border-border/70 bg-card/80 px-4 py-3"
               >
-                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15 text-[11px] font-bold text-primary">
+                <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/15   font-bold text-primary">
                   ✓
                 </div>
                 <span className="text-sm text-foreground">{benefit}</span>
@@ -230,7 +233,7 @@ export function HomePage({
               className="transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
             >
               <div className="mb-3 text-3xl">{icon}</div>
-              <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-primary">
+              <div className="  font-bold uppercase tracking-[0.16em] text-primary">
                 2024
               </div>
               <div className="mt-2 text-base font-semibold text-foreground">
@@ -284,9 +287,9 @@ export function HomePage({
         open={orderOpen}
         onClose={() => setOrderOpen(false)}
         variant="info"
-        title="Coming Soon"
-        message="The order feature is not yet available. Please contact us via Facebook or Instagram to place an order.Thank you for your interest!"
-        confirmLabel="OK"
+        title={l.orderPopupTitle}
+        message={l.orderPopupMsg}
+        confirmLabel={l.ok}
         cancelLabel={undefined}
       />
     </div>

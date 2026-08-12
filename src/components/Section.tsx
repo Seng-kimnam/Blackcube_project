@@ -1,6 +1,7 @@
 type SectionProps = {
   children: React.ReactNode;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
 };
 
 export function Section({ children, className = "" }: SectionProps) {
@@ -29,7 +30,7 @@ export function SectionHeading({
       }
     >
       {eyebrow ? (
-        <p className="mb-3 text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
+        <p className="mb-3   font-bold uppercase tracking-[0.2em] text-primary">
           {eyebrow}
         </p>
       ) : null}
@@ -40,9 +41,10 @@ export function SectionHeading({
   );
 }
 
-export function Card({ children, className = "" }: SectionProps) {
+export function Card({ children, className = "", onClick }: SectionProps) {
   return (
     <div
+      onClick={onClick}
       className={`rounded-2xl border border-border bg-card p-6 shadow-[0_10px_40px_rgba(0,0,0,0.2)] ${className}`.trim()}
     >
       {children}

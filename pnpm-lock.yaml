@@ -23,6 +23,9 @@ importers:
       firebase:
         specifier: ^12.17.1
         version: 12.17.1
+      iconsax-reactjs:
+        specifier: ^0.0.8
+        version: 0.0.8(react@19.2.4)
       lucide-react:
         specifier: ^1.31.0
         version: 1.31.0(react@19.2.4)
@@ -832,6 +835,11 @@ packages:
 
   http-parser-js@0.5.10:
     resolution: {integrity: sha512-Pysuw9XpUq5dVc/2SMHpuTY01RFl8fttgcyunjL7eEMhGM3cI4eOmiCycJDVCo/7O7ClfQD3SaI6ftDzqOXYMA==}
+
+  iconsax-reactjs@0.0.8:
+    resolution: {integrity: sha512-cb+uTMxbkSFNbu8ZclX7BWQVfOWQt8+m/PsDjnsm/H+mcYrnfTYMjHxiof1FB43k7UAgt1ds+0oFeMVKdqyslw==}
+    peerDependencies:
+      react: '*'
 
   idb@7.1.1:
     resolution: {integrity: sha512-gchesWBzyvGHRO9W8tzUWFDycow5gwjvFKfyV9FF32Y7F50yZMp7mP+T2mJIWFx49zicqyC4uefHM17o6xKIVQ==}
@@ -1979,6 +1987,10 @@ snapshots:
   graceful-fs@4.2.11: {}
 
   http-parser-js@0.5.10: {}
+
+  iconsax-reactjs@0.0.8(react@19.2.4):
+    dependencies:
+      react: 19.2.4
 
   idb@7.1.1: {}
 
