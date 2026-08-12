@@ -1,9 +1,28 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>
+      (function () {
+        const FALLBACK = "https://blackcube-project.vercel.app";
+        const isProd = window.location.hostname === "blackcube.website";
+        if (!isProd) return; // don't redirect on localhost/preview
+
+        fetch("/health.json?_=" + Date.now(), { cache: "no-store" })
+          .then((res) => {
+            if (!res.ok) throw new Error("bad status");
+          })
+          .catch(() => {
+            window.location.replace(FALLBACK);
+          });
+      })();
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="https://6a79a81351198decb7534fab.imgix.net/sandbox/logo.jpg" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://6a79a81351198decb7534fab.imgix.net/sandbox/logo.jpg"
+    />
 
     <title>BlackCube</title>
   </head>
