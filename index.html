@@ -3,17 +3,17 @@
   <head>
     <script>
       (function () {
-        const FALLBACK = "https://blackcube-project.vercel.app";
-        const isProd = window.location.hostname === "blackcube.website";
-        if (!isProd) return; // don't redirect on localhost/preview
+        const VERCEL_ORIGIN = "https://blackcube-project.vercel.app";
+        const redirectHosts = new Set(["blackcube.website", "www.blackcube.website"]);
 
-        fetch("/health.json?_=" + Date.now(), { cache: "no-store" })
-          .then((res) => {
-            if (!res.ok) throw new Error("bad status");
-          })
-          .catch(() => {
-            window.location.replace(FALLBACK);
-          });
+        if (!redirectHosts.has(window.location.hostname)) return;
+
+        window.location.replace(
+          VERCEL_ORIGIN +
+            window.location.pathname +
+            window.location.search +
+            window.location.hash,
+        );
       })();
     </script>
     <meta charset="UTF-8" />
