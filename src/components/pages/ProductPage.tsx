@@ -94,13 +94,13 @@ export function ProductPage({
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={() => setOrderOpen(true)}
-                className="flex-1 rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
+                className="flex-1 cursor-pointer rounded-2xl bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground"
               >
                 {l.orderBtn}
               </button>
               <button
                 onClick={() => setPage("feedback")}
-                className="flex-1 rounded-2xl border border-border px-5 py-3 text-sm font-semibold text-foreground"
+                className="flex-1 cursor-pointer rounded-2xl border border-border px-5 py-3 text-sm font-semibold text-foreground"
               >
                 {l.giveFeedback}
               </button>

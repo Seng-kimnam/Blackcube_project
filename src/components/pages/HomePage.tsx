@@ -1,9 +1,10 @@
 import { lazy, Suspense, useState } from "react";
 import { Section, SectionHeading, Card } from "@/components/Section";
 import { Carousel } from "@/components/Carousel";
-import { SOUP_IMG, SOUP_BOWL, SOUP2, type TranslationSet } from "@/content";
+import { SOUP_IMG, SOUP_BOWL, type TranslationSet } from "@/content";
 import { Popup } from "../Popup";
 import { ChefHat, CookingPot, HandCoins, Salad } from "lucide-react";
+import { slides } from "@/slide";
 
 const Product3DPage = lazy(() =>
   import("./Product3DPage").then((m) => ({ default: m.Product3DPage })),
@@ -26,43 +27,13 @@ export function HomePage({
   ) => void;
 }) {
   const [orderOpen, setOrderOpen] = useState(false);
-  const slides = [
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/img1.jpg",
-      alt: "2nd winner of the Dynamic Agripreneur Bootcamp",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_1_2026-08-11_11-36-17.jpg",
-      alt: "pitching BLACK CUBE at the Dynamic Agripreneur Bootcamp",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_2_2026-08-11_11-36-17.jpg",
-      alt: "BLACK CUBE product gallery",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_6_2026-08-11_11-36-17.jpg",
-      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_5_2026-08-11_11-36-17.jpg",
-      alt: "BLACK CUBE product gallery",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_4_2026-08-09_15-07-25.jpg",
-      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
-    },
-    {
-      src: "https://6a79a81351198decb7534fab.imgix.net/sandbox/photo_3_2026-08-09_15-07-25.jpg",
-      alt: "Show casing BLACK CUBE at the Dynamic Agripreneur Bootcamp",
-    },
-  ];
 
   return (
     <div>
       <Carousel className="h-64 w-full sm:h-80 lg:h-140" slides={slides} />
       <Suspense
         fallback={
-          <div className="flex min-h-[420px] w-full items-center justify-center">
+          <div className="flex min-h-105 w-full items-center justify-center">
             <div className="h-10 w-10 animate-spin rounded-full border-2 border-primary border-t-transparent" />
           </div>
         }
@@ -84,13 +55,13 @@ export function HomePage({
             <div className="mt-8 flex flex-wrap gap-3">
               <button
                 onClick={() => setPage("product")}
-                className="rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground"
+                className="rounded-full cursor-pointer bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground"
               >
                 {l.discoverBtn}
               </button>
               <button
                 onClick={() => setPage("product")}
-                className="rounded-full border border-border px-7 py-3.5 text-sm font-semibold text-foreground"
+                className="rounded-full cursor-pointer border border-border px-7 py-3.5 text-sm font-semibold text-foreground"
               >
                 {l.ourProductBtn}
               </button>
@@ -204,63 +175,6 @@ export function HomePage({
         </div>
       </Section>
 
-      {/* <Section className="border-y border-border bg-secondary/70">
-        <SectionHeading title={l.testimonialsTitle} centered />
-        <div className="grid gap-5 md:grid-cols-3">
-          {l.testimonials.map((item) => (
-            <Card key={item.name}>
-              <div className="mb-4 text-xl text-primary">★★★★★</div>
-              <p className="mb-5 text-sm leading-7 text-foreground/90 italic">
-                {item.text}
-              </p>
-              <div className="text-sm font-semibold text-foreground">
-                {item.name}
-              </div>
-              <div className="mt-1 text-xs text-muted-foreground">
-                {item.role}
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section> */}
-
-      {/* <Section>
-        <SectionHeading title={l.achievementsTitle} centered />
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {["🏆", "🌱", "🎓", "🇰🇭"].map((icon, index) => (
-            <Card
-              key={icon}
-              className="transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_48px_rgba(0,0,0,0.35)]"
-            >
-              <div className="mb-3 text-3xl">{icon}</div>
-              <div className="  font-bold uppercase tracking-[0.16em] text-primary">
-                2024
-              </div>
-              <div className="mt-2 text-base font-semibold text-foreground">
-                {
-                  [
-                    "Dynamic Agripreneur Bootcamp",
-                    "$500 Seed Fund",
-                    "Student Entrepreneurship Award",
-                    "Cambodian Food Innovation",
-                  ][index]
-                }
-              </div>
-              <div className="mt-2 text-sm text-muted-foreground">
-                {
-                  [
-                    "Top Finalist",
-                    "Official Grant",
-                    "Recognition of Excellence",
-                    "Local Pride",
-                  ][index]
-                }
-              </div>
-            </Card>
-          ))}
-        </div>
-      </Section> */}
-
       <Section className="rounded-4xl border border-border bg-[linear-gradient(135deg,rgba(240,180,41,0.08),transparent)] text-center">
         <h2 className="font-display text-4xl font-bold tracking-[-0.02em] text-foreground sm:text-5xl">
           {l.ctaTitle}
@@ -271,13 +185,13 @@ export function HomePage({
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button
             onClick={() => setOrderOpen(true)}
-            className="rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground"
+            className="rounded-full cursor-pointer bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground"
           >
             {l.ctaBtn}
           </button>
           <button
             onClick={() => setPage("feedback")}
-            className="rounded-full border border-border px-7 py-3 text-sm font-semibold text-foreground"
+            className="rounded-full border cursor-pointer border-border px-7 py-3 text-sm font-semibold text-foreground"
           >
             {l.ctaFeedback}
           </button>
