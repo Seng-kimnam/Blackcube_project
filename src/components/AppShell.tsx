@@ -16,6 +16,7 @@ import {
   faTiktok,
 } from "@fortawesome/free-brands-svg-icons";
 import { faArrowUp, faHouse } from "@fortawesome/free-solid-svg-icons";
+import AdBanner from "./AdsBanner";
 type AppShellRenderProps = {
   page: Page;
   setPage: (p: Page) => void;
@@ -138,6 +139,7 @@ export function AppShell({
       <Nav page={page} setPage={setPage} lang={lang} setLang={setLang} l={l} />
       <main>{children({ page, setPage, lang, setLang, l })}</main>
       <Footer l={l} setPage={setPage} />
+      <AdBanner />
       <ScrollToTopButton l={l} />
       {loaderVisible ? <PageLoader fade={loaderFade} /> : null}
     </div>

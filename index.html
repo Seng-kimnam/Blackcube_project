@@ -1,26 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta name="google-adsense-account" content="ca-pub-2427637620822139" />
     <meta
       name="google-site-verification"
       content="QVtlgTR7RQhJOrQv-Cco3JYZvnXpdnV4R79v8iDTqRM"
     />
-    <script>
-      (function () {
-        const FALLBACK = "https://blackcube-project.vercel.app";
-        const isProd = window.location.hostname === "blackcube.website";
-        if (!isProd) return; // don't redirect on localhost/preview
+    <meta name="google-adsense-account" content="ca-pub-2427637620822139" />
+    <script
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2427637620822139"
+      crossorigin="anonymous"
+    ></script>
 
-        fetch("/health.json?_=" + Date.now(), { cache: "no-store" })
-          .then((res) => {
-            if (!res.ok) throw new Error("bad status");
-          })
-          .catch(() => {
-            window.location.replace(FALLBACK);
-          });
-      })();
-    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
